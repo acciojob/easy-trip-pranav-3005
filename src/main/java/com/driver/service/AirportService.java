@@ -87,7 +87,7 @@ public class AirportService {
             }
         }
 
-        return null;
+        return "";
     }
 
     public String cancelATicket(Integer flightId, Integer passengerId) {
@@ -112,7 +112,10 @@ public class AirportService {
     }
 
     public int countOfBookingsDoneByPassengerAllCombined(Integer passengerId) {
-        return repository.getUsersBooking().get(passengerId).size();
+        HashMap<Integer,ArrayList<Integer>> usersBooking = new HashMap<>();
+        if(usersBooking.containsKey(passengerId))
+            return usersBooking.get(passengerId).size();
+        return 0;
     }
 
     public int calculateFlightFare(Integer flightId) {

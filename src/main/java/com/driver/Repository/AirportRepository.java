@@ -39,7 +39,7 @@ public class AirportRepository {
 
     public String getLargestAirportName() {
         int maxt=0; //maxterminal
-        String maxn=null; //max airport name
+        String maxn=""; //max airport name
 
         for(String i: airports.keySet())
         {
