@@ -16,7 +16,7 @@ import java.util.Date;
 public class AirportController {
 
     @Autowired
-    AirportService service;
+    AirportService service=new AirportService();
 
     @PostMapping("/add_airport")
     public String addAirport(@RequestBody Airport airport){
