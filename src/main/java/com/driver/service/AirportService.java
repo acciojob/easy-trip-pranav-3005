@@ -77,7 +77,7 @@ public class AirportService {
         HashMap<String , Airport> airports= repository.getairports();
 
         if(!flights.containsKey(flightId))
-            return "";
+            return null;
 
         City fromCity= flights.get(flightId).getFromCity();
 
@@ -90,7 +90,7 @@ public class AirportService {
             }
         }
 
-        return "";
+        return null;
     }
 
     public String cancelATicket(Integer flightId, Integer passengerId) {
@@ -160,6 +160,7 @@ public class AirportService {
         return revenue;
     }
 
+    //null pointer error
     public int getNumberOfPeopleOn(Date date, String airportName) {
         HashMap<String,Airport> airports = repository.getairports();
         HashMap<Integer,Flight> flights= repository.getFlights();
