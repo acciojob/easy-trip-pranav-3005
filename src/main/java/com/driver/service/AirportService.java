@@ -76,11 +76,14 @@ public class AirportService {
         HashMap<Integer,Flight> flights =repository.getFlights();
         HashMap<String , Airport> airports= repository.getairports();
 
-        String fromCity= flights.get(flightId).getFromCity().toString();
+        if(!flights.containsKey(flightId))
+            return "";
+
+        City fromCity= flights.get(flightId).getFromCity();
 
         for(String i: airports.keySet())
         {
-            String airportCity=airports.get(i).getCity().toString();
+            City airportCity=airports.get(i).getCity();
             if( fromCity.equals(airportCity) )
             {
                 return airports.get(i).getAirportName();
@@ -112,7 +115,7 @@ public class AirportService {
     }
 
     public int countOfBookingsDoneByPassengerAllCombined(Integer passengerId) {
-        HashMap<Integer,ArrayList<Integer>> usersBooking = new HashMap<>();
+        HashMap<Integer,ArrayList<Integer>> usersBooking = repository.getUsersBooking();
         if(usersBooking.containsKey(passengerId))
             return usersBooking.get(passengerId).size();
         return 0;
@@ -170,7 +173,7 @@ public class AirportService {
 
             if( fDate.equals(date) )
             {
-                if(flights.get(i).getFromCity().equals(airportName) || flights.get(i).getToCity().equals(airportName) )
+                if( flights.get(i).getFromCity().equals(airports.get(airportName).getCity()) || flights.get(i).getToCity().equals(airports.get(airportName).getCity()) )
                 {
                     if(flightTicketsBooked.containsKey(i))
                     {
