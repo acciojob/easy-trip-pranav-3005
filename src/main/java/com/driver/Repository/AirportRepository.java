@@ -51,7 +51,7 @@ public class AirportRepository {
             }
             else if(curt==maxt)
             {
-                if(maxn.compareTo(i)<0)
+                if(maxn.compareTo(i)>0)
                     maxn=i;
             }
         }
